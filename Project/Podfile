@@ -1,7 +1,0 @@
-pod "MHSegmentedView", :path => "../MHSegmentedView.podspec"
-
-target "Demo" do
-end
-
-target "DemoTests" do
-end
