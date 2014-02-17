@@ -31,7 +31,6 @@
 
 
 - (void)setup {
-    
     [self setupSegmentedControl];
     [self setupContainer];
     
@@ -78,10 +77,8 @@
 
 - (void)setupContainer {
     self.container = [[UIView alloc] init];
-    self.container.backgroundColor = [UIColor greenColor];
-    
+    self.container.backgroundColor = [UIColor clearColor];
     [self addSubview:self.container];
-    
     [self applyContainerConstraintsToView:self.container];
 }
 
