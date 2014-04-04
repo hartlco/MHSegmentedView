@@ -45,13 +45,14 @@
     
     self.segmentedControl.selectedSegmentIndex = 0;
     [self segmentChangeAction:self.segmentedControl];
+    
 }
 
 - (void)refresh {
     [self setup];
 }
 
-- (void)setDelegate:(id<MTSegmentedViewDelegate>)delegate {
+- (void)setDelegate:(id<MHSegmentedViewDelegate>)delegate {
     _delegate = delegate;
     [self setup];
 }
@@ -98,7 +99,16 @@
 }
 
 - (void)segmentChangeAction:(UISegmentedControl *)sender {
-    [self.container bringSubviewToFront:[self.delegate viewForSegmentIndex:sender.selectedSegmentIndex inSegmentedView:self]];
+    UIView *foremost = self.container.subviews.lastObject;
+    foremost.hidden = YES;
+    
+    if ([self.delegate respondsToSelector:@selector(segmentedView:didSelectSegmentAtIndex:)]) {
+        [self.delegate segmentedView:self didSelectSegmentAtIndex:sender.selectedSegmentIndex];
+    }
+    
+    UIView *next = [self.delegate viewForSegmentIndex:sender.selectedSegmentIndex inSegmentedView:self];
+    next.hidden = NO;
+    [self.container bringSubviewToFront:next];
 }
 
 

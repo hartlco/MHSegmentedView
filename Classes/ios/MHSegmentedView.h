@@ -23,18 +23,22 @@
 
 @class MHSegmentedView;
 
-@protocol MTSegmentedViewDelegate <NSObject>
+@protocol MHSegmentedViewDelegate <NSObject>
 
 - (NSInteger)numberOfSegmentsInSegmentedView:(MHSegmentedView *)segmentedView;
 - (NSString *)titleForSegmentAtIndex:(NSInteger)index inSegmentedView:(MHSegmentedView *)segmentedView;
 - (UIView *)viewForSegmentIndex:(NSInteger)index inSegmentedView:(MHSegmentedView *)segmentedView;
+
+@optional
+
+- (void)segmentedView:(MHSegmentedView *)segmentedView didSelectSegmentAtIndex:(NSInteger)index;
 
 @end
 
 
 @interface MHSegmentedView : UIView
 
-@property (nonatomic, weak) id<MTSegmentedViewDelegate> delegate;
+@property (nonatomic, weak) id<MHSegmentedViewDelegate> delegate;
 
 - (void)refresh;
 

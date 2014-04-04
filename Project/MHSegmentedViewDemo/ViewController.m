@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "MHSegmentedView.h"
 
-@interface ViewController () <MTSegmentedViewDelegate>
+@interface ViewController () <MHSegmentedViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MHSegmentedView *segmentedView;
 
@@ -59,6 +59,10 @@
 
 - (NSString *)titleForSegmentAtIndex:(NSInteger)index inSegmentedView:(MHSegmentedView *)segmentedView {
     return [NSString stringWithFormat:@"View - %ld", (long)index];
+}
+
+- (void)segmentedView:(MHSegmentedView *)segmentedView didSelectSegmentAtIndex:(NSInteger)index {
+    NSLog(@"did select: %ld", (long)index);
 }
 
 @end
