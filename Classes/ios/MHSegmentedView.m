@@ -111,5 +111,10 @@
     [self.container bringSubviewToFront:next];
 }
 
+#pragma mark - Style
+
+- (void)setTitleTextAttributes:(NSDictionary *)attributes forState:(UIControlState)state {
+    [self.segmentedControl setTitleTextAttributes:attributes forState:state];
+}
 
 @end

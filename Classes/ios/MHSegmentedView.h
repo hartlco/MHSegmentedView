@@ -42,4 +42,6 @@
 
 - (void)refresh;
 
+- (void)setTitleTextAttributes:(NSDictionary *)attributes forState:(UIControlState)state UI_APPEARANCE_SELECTOR;
+
 @end
