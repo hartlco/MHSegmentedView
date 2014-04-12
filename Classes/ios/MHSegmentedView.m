@@ -115,6 +115,7 @@
 
 - (void)setTitleTextAttributes:(NSDictionary *)attributes forState:(UIControlState)state {
     [self.segmentedControl setTitleTextAttributes:attributes forState:state];
+    [self.segmentedControl layoutIfNeeded];
 }
 
 @end
