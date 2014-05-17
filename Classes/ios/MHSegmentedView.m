@@ -41,6 +41,7 @@
         UIView *view = [self.delegate viewForSegmentIndex:i inSegmentedView:self];
         [self.container addSubview:view];
         [self applyContainerConstraintsToView:view];
+        view.hidden = YES;
     }
     
     self.segmentedControl.selectedSegmentIndex = 0;
