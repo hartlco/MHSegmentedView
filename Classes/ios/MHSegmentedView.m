@@ -24,11 +24,39 @@
 
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
 @property (nonatomic, strong) UIView *container;
+@property (nonatomic, strong) NSLayoutConstraint *segmentedControlHeightContraint;
 
 @end
 
 @implementation MHSegmentedView
 
+- (void)commonInit {
+    _controlHeight = 22.0;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
 
 - (void)setup {
     [self setupSegmentedControl];
@@ -64,7 +92,7 @@
     [self.segmentedControl addTarget:self action:@selector(segmentChangeAction:) forControlEvents:UIControlEventValueChanged];
     [self addSubview:self.segmentedControl];
     
-    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.segmentedControl attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:22];
+    self.segmentedControlHeightContraint = [NSLayoutConstraint constraintWithItem:self.segmentedControl attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:self.controlHeight];
     
     NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint constraintWithItem:self.segmentedControl attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0];
     
@@ -72,7 +100,7 @@
     
     NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:self.segmentedControl attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
     
-    [self.segmentedControl addConstraint:heightConstraint];
+    [self.segmentedControl addConstraint:self.segmentedControlHeightContraint];
     [self addConstraints:@[leadingConstraint,topConstraint, trailingConstraint]];
     [self.segmentedControl layoutIfNeeded];
 }
@@ -118,5 +146,12 @@
     [self.segmentedControl setTitleTextAttributes:attributes forState:state];
     [self.segmentedControl layoutIfNeeded];
 }
+
+- (void)setControlHeight:(CGFloat)controlHeight {
+    _controlHeight = controlHeight;
+    self.segmentedControlHeightContraint.constant = controlHeight;
+    [self.segmentedControl setNeedsLayout];
+}
+
 
 @end

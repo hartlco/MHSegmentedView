@@ -7,12 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "MHSegmentedView.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    
+    [[MHSegmentedView appearance] setControlHeight:28];
     return YES;
 }
 							
