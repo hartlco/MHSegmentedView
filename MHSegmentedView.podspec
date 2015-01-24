@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "MHSegmentedView"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "A tabbed Viewcontainer using UISegmetedControl"
   s.homepage         = "http://mhaddl.me"
   s.license          = 'MIT'
